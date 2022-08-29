@@ -9,6 +9,10 @@ class Movie extends Model
 {
 	use HasFactory;
 
+	protected $casts = [
+		'name' => 'array',
+	];
+
 	public function quote()
 	{
 		return $this->hasMany(Quote::class);
