@@ -8,10 +8,7 @@
 </head>
 
 <body>
-    <h1 class="text-3xl font-bold underline bg-blue-500">
-        Hello world!
-        @include('welcome')
-    </h1>
+    {{ $slot }}
 </body>
 
 </html>
