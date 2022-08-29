@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Http\Requests\StorePostRequest;
 
 class AdminMovieController extends Controller
 {
@@ -11,10 +12,21 @@ class AdminMovieController extends Controller
 		return view('admin.movies.create');
 	}
 
-	public function store()
+	public function store(StorePostRequest $request)
 	{
-		ddd(request()->all());
-		Movie::create(request());
+		Movie::create([
+			'title' => [
+				'en' => $request->title_en,
+				'ka' => $request->title_ka,
+			],
+		]);
+		return view('admin.home');
+	}
+
+	public function show()
+	{
+		$movies = Movie::all();
+		return view('admin.movies.show', ['movies'=>$movies]);
 	}
 
 	public function destroy()

@@ -20,3 +20,4 @@ use App\Http\Controllers\AdminMovieController;
 
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create']);
 Route::post('/admin/movies', [AdminMovieController::class, 'store']);
+Route::get('/admin/movies', [AdminMovieController::class, 'show']);

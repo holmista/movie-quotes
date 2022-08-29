@@ -5,20 +5,20 @@
             <form method="POST" action="/admin/movies" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="en">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="title_en">
                         name in english
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="en" name="en" type="text">
+                        id="title_en" name="title_en" type="text">
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="ka">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="title_ka">
                         name in georgian
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="en" name="ge" type="text">
+                        id="title_ka" name="title_ka" type="text">
                 </div>
                 <div class="flex justify-center">
                     <button
