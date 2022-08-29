@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminQuoteController;
+use App\Http\Controllers\AdminMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,8 @@ use App\Http\Controllers\AdminQuoteController;
 |
 */
 
-Route::get('/admin', [AdminQuoteController::class, 'index']);
-Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
+// Route::get('/admin', [AdminQuoteController::class, 'index']);
+// Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
+
+Route::get('/admin/movies/create', [AdminMovieController::class, 'create']);
+Route::post('/admin/movies', [AdminMovieController::class, 'store']);

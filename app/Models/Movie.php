@@ -9,6 +9,8 @@ class Movie extends Model
 {
 	use HasFactory;
 
+	protected $guarded = [];
+
 	protected $casts = [
 		'name' => 'array',
 	];
