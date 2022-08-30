@@ -25,9 +25,14 @@ class AdminMovieController extends Controller
 
 	public function show()
 	{
-		$movies = Movie::all();
-		// ddd($movies);
-		return view('admin.movies.show', ['movies'=>$movies]);
+		$movies = Movie::latest();
+		if (request('search'))
+		{
+			$movies->where('title->en', 'like', '%' . request('search') . '%')
+			->orWhere('title->ka', 'like', '%' . request('search') . '%');
+		}
+
+		return view('admin.movies.show', ['movies'=>$movies->get()]);
 	}
 
 	public function edit(Movie $movie)

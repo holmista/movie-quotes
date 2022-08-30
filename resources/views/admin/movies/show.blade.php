@@ -6,6 +6,7 @@
             <div class="sm:flex-auto">
                 <h1 class="text-xl font-semibold text-gray-900">movies</h1>
             </div>
+            <x-search-bar />
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <button type="button"
                     class="inline-flex items-center justify-center rounded-md border border-transparent

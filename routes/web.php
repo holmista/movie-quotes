@@ -20,7 +20,10 @@ use App\Http\Controllers\AdminMovieController;
 
 Route::get('/admin/movies', [AdminMovieController::class, 'show']);
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create']);
-Route::post('/admin/movies', [AdminMovieController::class, 'store']);
 Route::get('/admin/movies/edit/{movie}', [AdminMovieController::class, 'edit']);
+
+Route::post('/admin/movies', [AdminMovieController::class, 'store']);
+
 Route::patch('/admin/movies/{movie}', [AdminMovieController::class, 'update']);
+
 Route::delete('/admin/movies/{movie}', [AdminMovieController::class, 'destroy']);
