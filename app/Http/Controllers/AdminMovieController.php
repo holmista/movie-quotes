@@ -30,6 +30,25 @@ class AdminMovieController extends Controller
 		return view('admin.movies.show', ['movies'=>$movies]);
 	}
 
+	public function edit(Movie $movie)
+	{
+		return view('admin.movies.edit', ['movie'=>$movie]);
+	}
+
+	public function update(Movie $movie)
+	{
+		// $newTranslations = request()->all('en', 'ka');
+		$newTranslations = request()->validate([
+			'en'=> ['required'],
+			'ka'=> ['required'],
+		]);
+
+		$movie->replaceTranslations('title', $newTranslations);
+		$movie->save();
+
+		return back()->with('success', 'post updated');
+	}
+
 	public function destroy(Movie $movie)
 	{
 		$movie->delete();
