@@ -20,7 +20,7 @@ class AdminMovieController extends Controller
 				'ka' => $request->title_ka,
 			],
 		]);
-		return view('admin.home')->with('success', 'movie created');
+		return view('admin.movies.show', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
 	}
 
 	public function show()
@@ -51,7 +51,7 @@ class AdminMovieController extends Controller
 		$movie->replaceTranslations('title', $newTranslations);
 		$movie->save();
 
-		return back()->with('success', 'post updated');
+		return view('admin.movies.show', ['movies'=>Movie::latest()->get()]);
 	}
 
 	public function destroy(Movie $movie)
