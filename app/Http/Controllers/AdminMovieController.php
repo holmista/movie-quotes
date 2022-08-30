@@ -20,16 +20,19 @@ class AdminMovieController extends Controller
 				'ka' => $request->title_ka,
 			],
 		]);
-		return view('admin.home');
+		return view('admin.home')->with('success', 'movie created');
 	}
 
 	public function show()
 	{
 		$movies = Movie::all();
+		// ddd($movies);
 		return view('admin.movies.show', ['movies'=>$movies]);
 	}
 
-	public function destroy()
+	public function destroy(Movie $movie)
 	{
+		$movie->delete();
+		return back()->with('success', 'movie deleted');
 	}
 }

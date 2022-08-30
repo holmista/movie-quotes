@@ -19,5 +19,6 @@ use App\Http\Controllers\AdminMovieController;
 // Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
 
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create']);
-Route::post('/admin/movies', [AdminMovieController::class, 'store']);
 Route::get('/admin/movies', [AdminMovieController::class, 'show']);
+Route::post('/admin/movies', [AdminMovieController::class, 'store']);
+Route::delete('/admin/movies/{movie}', [AdminMovieController::class, 'destroy']);

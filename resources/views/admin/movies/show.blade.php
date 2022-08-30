@@ -1,8 +1,6 @@
 {{-- @props(['movies']) --}}
 
 <x-generic-layout>
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="px-4 sm:px-6 lg:px-8 mt-20 w-1/3 mx-auto">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -34,7 +32,10 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
-                                <x-movie-row>title1</x-movie-row>
+                                @foreach ($movies as $movie)
+                                    <x-movie-row id="{{ $movie->id }}">{{ $movie->title }}</x-movie-row>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
