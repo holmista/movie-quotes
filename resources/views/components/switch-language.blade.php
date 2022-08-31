@@ -1,6 +1,6 @@
 @props(['locale'])
 
-<div class="h-screen flex items-center ml-14">
+<div class="h-screen flex items-center ml-14 absolute">
     <div class="space-y-4 w-fit">
         <div
             class="rounded-full w-14 h-14 border-solid border-white border-2
