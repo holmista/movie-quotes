@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class StoreMovieRequest extends FormRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.
@@ -14,8 +14,8 @@ class StorePostRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'title_en'=> 'required',
-			'title_ka'=> 'required',
+			'en'=> 'required',
+			'ka'=> 'required',
 		];
 	}
 }

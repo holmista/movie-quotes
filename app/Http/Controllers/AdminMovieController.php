@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreMovieRequest;
 
 class AdminMovieController extends Controller
 {
@@ -12,12 +12,12 @@ class AdminMovieController extends Controller
 		return view('admin.movies.create');
 	}
 
-	public function store(StorePostRequest $request)
+	public function store(StoreMovieRequest $request)
 	{
 		Movie::create([
 			'title' => [
-				'en' => $request->title_en,
-				'ka' => $request->title_ka,
+				'en' => $request->en,
+				'ka' => $request->ka,
 			],
 		]);
 		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
