@@ -42,7 +42,6 @@ class AdminMovieController extends Controller
 
 	public function update(Movie $movie)
 	{
-		// $newTranslations = request()->all('en', 'ka');
 		$newTranslations = request()->validate([
 			'en'=> ['required'],
 			'ka'=> ['required'],

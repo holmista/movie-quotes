@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminQuoteController;
 use App\Http\Controllers\AdminMovieController;
 
 /*
@@ -14,9 +13,6 @@ use App\Http\Controllers\AdminMovieController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/admin', [AdminQuoteController::class, 'index']);
-// Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
 
 Route::get('/admin/movies', [AdminMovieController::class, 'show'])->name('getMovies');
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('createMovie');
