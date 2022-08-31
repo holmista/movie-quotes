@@ -16,3 +16,7 @@ use App\Http\Controllers\AdminQuoteController;
 
 Route::get('/admin', [AdminQuoteController::class, 'index']);
 Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
+
+Route::get('/', function () {
+	return view('client.random-quote');
+});
