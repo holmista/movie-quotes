@@ -20,3 +20,7 @@ Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
 Route::get('/', function () {
 	return view('client.random-quote');
 });
+
+Route::get('/{movie}', function () {
+	return view('client.quotes');
+});
