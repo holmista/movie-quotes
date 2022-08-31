@@ -1,5 +1,3 @@
 <x-bg>
-    <div>
-        hello
-    </div>
+    <x-switch-language locale='en' />
 </x-bg>
