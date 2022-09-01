@@ -25,10 +25,10 @@ class AdminQuoteController extends Controller
 	{
 		$path = request()->file('thumbnail')->store('thumbnails');
 		Quote::create([
-			'body'=> json_encode([
+			'body'=> [
 				'en'=> $request->en,
 				'ka'=> $request->ka,
-			]),
+			],
 			'movie_id'    => $request->movie,
 			'thumbnail'   => '$path',
 		]);

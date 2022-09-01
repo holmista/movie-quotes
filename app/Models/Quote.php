@@ -10,12 +10,12 @@ class Quote extends Model
 {
 	use HasFactory, HasTranslations;
 
-	public $translatable = ['title'];
+	public $translatable = ['body'];
 
 	protected $fillable = ['body', 'movie_id', 'thumbnail'];
 
 	protected $casts = [
-		'title' => 'array',
+		'body' => 'array',
 	];
 
 	public function movie()

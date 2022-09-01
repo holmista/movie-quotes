@@ -34,7 +34,8 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($quotes as $quote)
-                                    {{-- <x-quote-row id="{{ $quote->id }}">{{ $quote->name }}</x-quote-row> --}}
+                                    <x-quote-row id="{{ $quote->id }}" image="{{ $quote->thumbnail }}">
+                                        {{ $quote->name }}</x-quote-row>
                                 @endforeach
                             </tbody>
                         </table>
