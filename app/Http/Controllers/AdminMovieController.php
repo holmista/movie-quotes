@@ -40,15 +40,12 @@ class AdminMovieController extends Controller
 		return view('admin.movies.edit', ['movie'=>$movie]);
 	}
 
-	public function update(Movie $movie)
+	public function update(StoreMovieRequest $request, $id)
 	{
-		$newTranslations = request()->validate([
-			'en'=> ['required'],
-			'ka'=> ['required'],
-		]);
-
-		$movie->replaceTranslations('title', $newTranslations);
-		$movie->save();
+		Movie::where('id', $id)->update(['title' => [
+			'en' => $request->en,
+			'ka' => $request->ka,
+		]]);
 
 		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie updated');
 	}
