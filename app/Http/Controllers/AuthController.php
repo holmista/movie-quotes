@@ -11,7 +11,7 @@ class AuthController extends Controller
 		$credentials = $request->only('email', 'password');
 		if (auth()->attempt($credentials))
 		{
-			return redirect('/')->with('success', 'Welcome back!');
+			return redirect()->route('signin.show')->with('success', 'Welcome back!');
 		}
 		return back()->withInput()->withErrors(['email'=>'invalid credentials']);
 	}

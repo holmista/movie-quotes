@@ -15,4 +15,5 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::view('/admin/signin', 'admin.sign-in');
+Route::view('/admin', 'admin.home')->name('signin.show');
 Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
