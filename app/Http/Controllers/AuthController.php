@@ -6,12 +6,7 @@ use App\Http\Requests\StoreAuthRequest;
 
 class AuthController extends Controller
 {
-	public function show()
-	{
-		return view('admin.sign-in');
-	}
-
-	public function store(StoreAuthRequest $request)
+	public function signin(StoreAuthRequest $request)
 	{
 		$credentials = $request->only('email', 'password');
 		if (auth()->attempt($credentials))

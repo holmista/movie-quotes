@@ -14,5 +14,5 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/admin/signin', [AuthController::class, 'show'])->name('signinPage');
-Route::post('/admin/signin', [AuthController::class, 'store'])->name('signin');
+Route::view('/admin/signin', 'admin.sign-in');
+Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
