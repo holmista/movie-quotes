@@ -29,6 +29,7 @@ Route::view('/admin', 'admin.home')->name('signin.show');
 Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
 
 Route::get('/admin/quotes', [AdminQuoteController::class, 'show'])->name('quotes.show');
+Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create'])->name('quotes.create');
 
 Route::get('/', function () {
 	return view('client.random-quote');
