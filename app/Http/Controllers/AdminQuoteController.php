@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quote;
 use App\Models\Movie;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class AdminQuoteController extends Controller
 {
@@ -23,14 +23,15 @@ class AdminQuoteController extends Controller
 
 	public function store(Request $request)
 	{
+		// dd('got request');
 		$path = request()->file('thumbnail')->store('thumbnails');
 		Quote::create([
 			'body'=> [
 				'en'=> $request->en,
 				'ka'=> $request->ka,
 			],
-			'movie'    => $request->movie,
-			'thumbnail'=> $path,
+			'movie_id'    => $request->movie,
+			'thumbnail'   => $path,
 		]);
 
 		return redirect()->route('quotes.show');
