@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAuthRequest;
+
 class AuthController extends Controller
 {
 	public function show()
@@ -9,8 +11,13 @@ class AuthController extends Controller
 		return view('admin.sign-in');
 	}
 
-	public function store()
+	public function store(StoreAuthRequest $request)
 	{
-		return view('admin.sign-in');
+		$credentials = $request->only('email', 'password');
+		if (auth()->attempt($credentials))
+		{
+			return redirect('/')->with('success', 'Welcome back!');
+		}
+		return back()->withInput()->withErrors(['email'=>'invalid credentials']);
 	}
 }
