@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminQuoteController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +14,4 @@ use App\Http\Controllers\AdminQuoteController;
 |
 */
 
-Route::get('/admin', [AdminQuoteController::class, 'index']);
-Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
+Route::get('/admin/signin', [AuthController::class, 'show'])->name('signin');
