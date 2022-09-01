@@ -23,15 +23,14 @@ class AdminQuoteController extends Controller
 
 	public function store(Request $request)
 	{
-		// dd('got request');
 		$path = request()->file('thumbnail')->store('thumbnails');
 		Quote::create([
-			'body'=> [
+			'body'=> json_encode([
 				'en'=> $request->en,
 				'ka'=> $request->ka,
-			],
+			]),
 			'movie_id'    => $request->movie,
-			'thumbnail'   => $path,
+			'thumbnail'   => '$path',
 		]);
 
 		return redirect()->route('quotes.show');
