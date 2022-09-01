@@ -14,6 +14,7 @@ class AdminMovieController extends Controller
 
 	public function store(StoreMovieRequest $request)
 	{
+		// dd($request->all());
 		Movie::create([
 			'title' => [
 				'en' => $request->en,

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quote;
+
 class AdminQuoteController extends Controller
 {
 	// add data and pagination
-	public function index()
+	public function show()
 	{
-		return view('admin.quotes.index');
+		$quotes = Quote::latest();
+		return view('admin.quotes.show', ['quotes'=>$quotes]);
 	}
 
 	public function create()

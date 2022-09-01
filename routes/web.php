@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminMovieController;
+use App\Http\Controllers\AdminQuoteController;
 use App\Http\Controllers\AuthController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-
 Route::get('/admin/movies', [AdminMovieController::class, 'show'])->name('getMovies');
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('createMovie');
 Route::post('/admin/movies', [AdminMovieController::class, 'store']);
@@ -28,6 +27,8 @@ Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
 Route::view('/admin/signin', 'admin.sign-in');
 Route::view('/admin', 'admin.home')->name('signin.show');
 Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
+
+Route::get('/admin/quotes', [AdminQuoteController::class, 'show'])->name('quotes.show');
 
 Route::get('/', function () {
 	return view('client.random-quote');
