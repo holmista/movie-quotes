@@ -5,8 +5,12 @@ module.exports = {
         "./resources/**/*.js",
         "./resources/**/*.vue",
       ],
-  theme: {
-    extend: {},
-  },
+    theme: {
+        extend: {
+            backgroundImage: {
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            }
+        }
+    },
   plugins: [],
 }
