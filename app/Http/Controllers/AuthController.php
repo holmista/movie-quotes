@@ -8,4 +8,9 @@ class AuthController extends Controller
 	{
 		return view('admin.sign-in');
 	}
+
+	public function store()
+	{
+		return view('admin.sign-in');
+	}
 }
