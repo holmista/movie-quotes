@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminQuoteController;
+use App\Http\Controllers\AdminMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +14,12 @@ use App\Http\Controllers\AdminQuoteController;
 |
 */
 
-Route::get('/admin', [AdminQuoteController::class, 'index']);
-Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
+Route::get('/admin/movies', [AdminMovieController::class, 'show'])->name('getMovies');
+Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('createMovie');
+Route::get('/admin/movies/edit/{movie}', [AdminMovieController::class, 'edit'])->name('editMovie');
+
+Route::post('/admin/movies', [AdminMovieController::class, 'store']);
+
+Route::patch('/admin/movies/{movie}', [AdminMovieController::class, 'update']);
+
+Route::delete('/admin/movies/{movie}', [AdminMovieController::class, 'destroy']);
