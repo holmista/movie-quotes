@@ -44,6 +44,7 @@ class AdminQuoteController extends Controller
 
 	public function destroy(Quote $quote)
 	{
+		Storage::delete($quote->thumbnail);
 		$quote->delete();
 		return redirect()->route('quotes.show');
 	}
