@@ -53,8 +53,7 @@ class AdminQuoteController extends Controller
 
 	public function edit(Quote $quote): View
 	{
-		$movies = Movie::latest()->get();
-		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
+		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>Movie::latest()->get()]);
 	}
 
 	public function update(StoreQuoteRequest $request, Quote $quote): RedirectResponse
