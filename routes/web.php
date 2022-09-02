@@ -16,30 +16,27 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/admin/movies', [AdminMovieController::class, 'show'])->name('getMovies');
-Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('createMovie');
-Route::post('/admin/movies', [AdminMovieController::class, 'store']);
-Route::patch('/admin/movies/{movie}', [AdminMovieController::class, 'update']);
-Route::delete('/admin/movies/{movie}', [AdminMovieController::class, 'destroy']);
-Route::get('/admin/movies/edit/{movie}', [AdminMovieController::class, 'edit'])->name('editMovie');
-Route::get('/admin', [AdminQuoteController::class, 'index']);
-Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
-Route::view('/admin/signin', 'admin.sign-in');
-Route::view('/admin', 'admin.home')->name('signin.show');
-Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
-Route::get('/admin/{movie}/quotes', [AdminMovieController::class, 'showQuotes'])->name('movie.quotes');
+// admin movies routes
+Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('movies.index');
+Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('movies.create');
+Route::post('/admin/movies', [AdminMovieController::class, 'store'])->name('movies.store');
+Route::get('/admin/movies/{movie}', [AdminMovieController::class, 'edit'])->name('movies.edit');
+Route::patch('/admin/movies/{movie}', [AdminMovieController::class, 'update'])->name('movies.update');
+Route::delete('/admin/movies/{movie}', [AdminMovieController::class, 'destroy'])->name('movies.destroy');
+Route::get('/admin/{movie}/quotes', [AdminMovieController::class, 'showQuotes'])->name('movie.show_quotes');
 
-Route::get('/admin/quotes', [AdminQuoteController::class, 'show'])->name('quotes.show');
-Route::post('/admin/quotes', [AdminQuoteController::class, 'store']);
+// admin auth routes
+Route::view('/admin/signin', 'admin.sign-in')->name('admin.sign_in');
+Route::post('/admin/signin', [AuthController::class, 'signin'])->name('auth.signin');
+
+// admin quotes routes
+Route::get('/admin', [AdminQuoteController::class, 'index'])->name('quotes.index');
 Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create'])->name('quotes.create');
-Route::get('/admin/quotes/edit/{quote}', [AdminQuoteController::class, 'edit'])->name('quotes.edit');
-Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.delete');
+Route::post('/admin/quotes', [AdminQuoteController::class, 'store'])->name('quotes.store');
+Route::get('/admin/quotes/{quote}', [AdminQuoteController::class, 'edit'])->name('quotes.edit');
+Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.destroy');
 Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('quotes.update');
 
-Route::get('/', function () {
-	return view('client.random-quote');
-});
-
-Route::get('/{movie}', function () {
-	return view('client.quotes');
-});
+// client routes
+Route::view('/', 'client.random-quote')->name('client.show');
+Route::view('/{movie}', 'client.quotes')->name('client.index');

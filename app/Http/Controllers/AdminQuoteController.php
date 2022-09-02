@@ -12,7 +12,7 @@ use Illuminate\Http\RedirectResponse;
 
 class AdminQuoteController extends Controller
 {
-	public function show(): View
+	public function index(): View
 	{
 		$quotes = Quote::latest();
 		if (request('search'))
@@ -41,14 +41,14 @@ class AdminQuoteController extends Controller
 			'thumbnail'   => $thumbnail,
 		]);
 
-		return redirect()->route('quotes.show');
+		return redirect()->route('quotes.index');
 	}
 
 	public function destroy(Quote $quote): RedirectResponse
 	{
 		Storage::delete($quote->thumbnail);
 		$quote->delete();
-		return redirect()->route('quotes.show');
+		return redirect()->route('quotes.index');
 	}
 
 	public function edit(Quote $quote): View
@@ -63,6 +63,6 @@ class AdminQuoteController extends Controller
 		$attributes = request()->only(['body', 'movie_id', 'thumbnail']);
 		$attributes['thumbnail'] = $thumbnail;
 		$quote->update($attributes);
-		return redirect()->route('quotes.show');
+		return redirect()->route('quotes.index');
 	}
 }

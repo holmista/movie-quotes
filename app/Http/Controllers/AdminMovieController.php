@@ -22,10 +22,10 @@ class AdminMovieController extends Controller
 				'ka' => $request->ka,
 			],
 		]);
-		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
+		return redirect()->route('movies.index', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
 	}
 
-	public function show(): View
+	public function index(): View
 	{
 		$movies = Movie::latest();
 		if (request('search'))
@@ -49,17 +49,17 @@ class AdminMovieController extends Controller
 			'ka' => $request->ka,
 		]]);
 
-		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie updated');
+		return redirect()->route('movies.index', ['movies'=>Movie::latest()->get()])->with('success', 'movie updated');
 	}
 
 	public function destroy(Movie $movie): RedirectResponse
 	{
 		$movie->delete();
 
-		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie deleted');
+		return redirect()->route('movies.index', ['movies'=>Movie::latest()->get()])->with('success', 'movie deleted');
 	}
 
-	public function showQuotes(Movie $movie): View
+	public function showQuotes(Movie $movie): RedirectResponse
 	{
 		$quotes = $movie->quotes();
 		if (request('search'))
@@ -67,6 +67,6 @@ class AdminMovieController extends Controller
 			$quotes->where('body->en', 'like', '%' . request('search') . '%')
 			->orWhere('body->ka', 'like', '%' . request('search') . '%');
 		}
-		return view('admin.quotes.show', ['quotes'=>$quotes->get()]);
+		return redirect()->route('movie.show_quotes', ['quotes'=>$quotes->get()]);
 	}
 }
