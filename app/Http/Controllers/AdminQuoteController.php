@@ -6,14 +6,19 @@ use App\Models\Quote;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuoteRequest;
+use Illuminate\Support\Facades\Storage;
 
 class AdminQuoteController extends Controller
 {
-	// add data and pagination
 	public function show()
 	{
-		$quotes = Quote::latest()->get();
-		return view('admin.quotes.show', ['quotes'=>$quotes]);
+		$quotes = Quote::latest();
+		if (request('search'))
+		{
+			$quotes->where('body->en', 'like', '%' . request('search') . '%')
+			->orWhere('body->ka', 'like', '%' . request('search') . '%');
+		}
+		return view('admin.quotes.show', ['quotes'=>$quotes->get()]);
 	}
 
 	public function create()
@@ -49,11 +54,13 @@ class AdminQuoteController extends Controller
 		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
 	}
 
-	public function update(StoreQuoteRequest $request, $quote)
+	public function update(StoreQuoteRequest $request, Quote $quote)
 	{
-		ddd($request);
-		ddd(request()->only(['movie']));
-		$movies = Movie::latest()->get();
-		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
+		Storage::delete($quote->thumbnail);
+		$path = $request->file('thumbnail')->store('thumbnails');
+		$attributes = request()->only(['body', 'movie_id', 'thumbnail']);
+		$attributes['thumbnail'] = $path;
+		$quote->update($attributes);
+		return redirect()->route('quotes.show');
 	}
 }

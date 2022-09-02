@@ -34,10 +34,10 @@
                     </div>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="movie">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="movie_id">
                         quote movie
                     </label>
-                    <select name="movie" id="movie" required
+                    <select name="movie_id" id="movie_id" required
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer">
                         @foreach ($movies as $movie)
                             <option value="{{ $movie->id }}" {{ $movie->id === $quote->movie_id ? 'selected' : '' }}>

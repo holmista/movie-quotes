@@ -21,10 +21,10 @@ class StoreQuoteRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'en'        => ['required'],
-			'ka'        => ['required'],
-			'movie'     => ['required', Rule::exists('movies', 'id')],
-			'thumbnail' => ['required', 'image'],
+			'en'           => ['required'],
+			'ka'           => ['required'],
+			'movie_id'     => ['required', Rule::exists('movies', 'id')],
+			'thumbnail'    => ['required', 'image'],
 		];
 	}
 }
