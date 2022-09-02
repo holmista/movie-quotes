@@ -31,14 +31,14 @@ class AdminQuoteController extends Controller
 
 	public function store(Request $request): RedirectResponse
 	{
-		$path = request()->file('thumbnail')->store('thumbnails');
+		$thumbnail = request()->file('thumbnail')->store('thumbnails');
 		Quote::create([
 			'body'=> [
 				'en'=> $request->en,
 				'ka'=> $request->ka,
 			],
 			'movie_id'    => $request->movie,
-			'thumbnail'   => $path,
+			'thumbnail'   => $thumbnail,
 		]);
 
 		return redirect()->route('quotes.show');
@@ -59,9 +59,9 @@ class AdminQuoteController extends Controller
 	public function update(StoreQuoteRequest $request, Quote $quote): RedirectResponse
 	{
 		Storage::delete($quote->thumbnail);
-		$path = $request->file('thumbnail')->store('thumbnails');
+		$thumbnail = $request->file('thumbnail')->store('thumbnails');
 		$attributes = request()->only(['body', 'movie_id', 'thumbnail']);
-		$attributes['thumbnail'] = $path;
+		$attributes['thumbnail'] = $thumbnail;
 		$quote->update($attributes);
 		return redirect()->route('quotes.show');
 	}
