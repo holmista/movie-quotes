@@ -7,10 +7,12 @@ use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuoteRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class AdminQuoteController extends Controller
 {
-	public function show()
+	public function show(): View
 	{
 		$quotes = Quote::latest();
 		if (request('search'))
@@ -21,13 +23,13 @@ class AdminQuoteController extends Controller
 		return view('admin.quotes.show', ['quotes'=>$quotes->get()]);
 	}
 
-	public function create()
+	public function create(): View
 	{
 		$movies = Movie::latest()->get();
 		return view('admin.quotes.create', ['movies'=>$movies]);
 	}
 
-	public function store(Request $request)
+	public function store(Request $request): RedirectResponse
 	{
 		$path = request()->file('thumbnail')->store('thumbnails');
 		Quote::create([
@@ -42,20 +44,20 @@ class AdminQuoteController extends Controller
 		return redirect()->route('quotes.show');
 	}
 
-	public function destroy(Quote $quote)
+	public function destroy(Quote $quote): RedirectResponse
 	{
 		Storage::delete($quote->thumbnail);
 		$quote->delete();
 		return redirect()->route('quotes.show');
 	}
 
-	public function edit(Quote $quote)
+	public function edit(Quote $quote): View
 	{
 		$movies = Movie::latest()->get();
 		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
 	}
 
-	public function update(StoreQuoteRequest $request, Quote $quote)
+	public function update(StoreQuoteRequest $request, Quote $quote): RedirectResponse
 	{
 		Storage::delete($quote->thumbnail);
 		$path = $request->file('thumbnail')->store('thumbnails');

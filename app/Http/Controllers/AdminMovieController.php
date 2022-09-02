@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Http\Requests\StoreMovieRequest;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class AdminMovieController extends Controller
 {
-	public function create()
+	public function create(): View
 	{
 		return view('admin.movies.create');
 	}
 
-	public function store(StoreMovieRequest $request)
+	public function store(StoreMovieRequest $request): RedirectResponse
 	{
-		// dd($request->all());
 		Movie::create([
 			'title' => [
 				'en' => $request->en,
@@ -24,7 +25,7 @@ class AdminMovieController extends Controller
 		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
 	}
 
-	public function show()
+	public function show(): View
 	{
 		$movies = Movie::latest();
 		if (request('search'))
@@ -36,12 +37,12 @@ class AdminMovieController extends Controller
 		return view('admin.movies.show', ['movies'=>$movies->get()]);
 	}
 
-	public function edit(Movie $movie)
+	public function edit(Movie $movie): View
 	{
 		return view('admin.movies.edit', ['movie'=>$movie]);
 	}
 
-	public function update(StoreMovieRequest $request, $id)
+	public function update(StoreMovieRequest $request, $id): RedirectResponse
 	{
 		Movie::where('id', $id)->update(['title' => [
 			'en' => $request->en,
@@ -51,14 +52,14 @@ class AdminMovieController extends Controller
 		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie updated');
 	}
 
-	public function destroy(Movie $movie)
+	public function destroy(Movie $movie): RedirectResponse
 	{
 		$movie->delete();
 
 		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie deleted');
 	}
 
-	public function showQuotes(Movie $movie)
+	public function showQuotes(Movie $movie): View
 	{
 		$quotes = $movie->quotes();
 		if (request('search'))
