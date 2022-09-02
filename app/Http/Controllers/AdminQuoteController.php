@@ -35,4 +35,10 @@ class AdminQuoteController extends Controller
 
 		return redirect()->route('quotes.show');
 	}
+
+	public function destroy(Quote $quote)
+	{
+		$quote->delete();
+		return redirect()->route('quotes.show');
+	}
 }

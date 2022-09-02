@@ -31,6 +31,7 @@ Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
 Route::get('/admin/quotes', [AdminQuoteController::class, 'show'])->name('quotes.show');
 Route::post('/admin/quotes', [AdminQuoteController::class, 'store']);
 Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create'])->name('quotes.create');
+Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.delete');
 
 Route::get('/', function () {
 	return view('client.random-quote');
