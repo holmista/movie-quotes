@@ -27,6 +27,7 @@ Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create']);
 Route::view('/admin/signin', 'admin.sign-in');
 Route::view('/admin', 'admin.home')->name('signin.show');
 Route::post('/admin/signin', [AuthController::class, 'signin'])->name('signin');
+Route::get('/admin/{movie}/quotes', [AdminMovieController::class, 'showQuotes'])->name('movie.quotes');
 
 Route::get('/admin/quotes', [AdminQuoteController::class, 'show'])->name('quotes.show');
 Route::post('/admin/quotes', [AdminQuoteController::class, 'store']);

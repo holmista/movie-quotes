@@ -57,4 +57,15 @@ class AdminMovieController extends Controller
 
 		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie deleted');
 	}
+
+	public function showQuotes(Movie $movie)
+	{
+		$quotes = $movie->quotes();
+		if (request('search'))
+		{
+			$quotes->where('body->en', 'like', '%' . request('search') . '%')
+			->orWhere('body->ka', 'like', '%' . request('search') . '%');
+		}
+		return view('admin.quotes.show', ['quotes'=>$quotes->get()]);
+	}
 }

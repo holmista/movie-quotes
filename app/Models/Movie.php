@@ -18,7 +18,7 @@ class Movie extends Model
 		'title' => 'array',
 	];
 
-	public function quote()
+	public function quotes()
 	{
 		return $this->hasMany(Quote::class);
 	}
