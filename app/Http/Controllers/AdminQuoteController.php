@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quote;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreQuoteRequest;
 
 class AdminQuoteController extends Controller
 {
@@ -44,6 +45,14 @@ class AdminQuoteController extends Controller
 
 	public function edit(Quote $quote)
 	{
+		$movies = Movie::latest()->get();
+		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
+	}
+
+	public function update(StoreQuoteRequest $request, $quote)
+	{
+		ddd($request);
+		ddd(request()->only(['movie']));
 		$movies = Movie::latest()->get();
 		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
 	}

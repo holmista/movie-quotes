@@ -1,12 +1,11 @@
-{{-- @props(['quote', 'movies']) --}}
-
 <x-generic-layout>
     <div class="mt-40 flex justify-center items-center">
         <div class="w-full max-w-xs ">
             <h1 class="text-center text-lg text-gray-700 font-bold">edit a quote!</h1>
-            <form method="POST" action="/admin/quotes" enctype="multipart/form-data"
+            <form method="POST" action="/admin/quotes/{{ $quote->id }}" enctype="multipart/form-data"
                 class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
+                @method('patch')
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="en">
                         quote in english

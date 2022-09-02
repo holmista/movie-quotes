@@ -33,6 +33,7 @@ Route::post('/admin/quotes', [AdminQuoteController::class, 'store']);
 Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create'])->name('quotes.create');
 Route::get('/admin/quotes/edit/{quote}', [AdminQuoteController::class, 'edit'])->name('quotes.edit');
 Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.delete');
+Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('quotes.update');
 
 Route::get('/', function () {
 	return view('client.random-quote');
