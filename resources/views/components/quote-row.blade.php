@@ -8,7 +8,12 @@
             </p>
         </td>
         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-            <a href="/admin/quotes/edit/{{ $id }}" class="text-blue-600 hover:text-blue-900">edit</a>
+            <form method="GET" action="/admin/quotes/edit/{{ $id }}">
+                @csrf
+                <button class="text-blue-600 hover:text-blue-900">
+                    edit
+                </button>
+            </form>
         </td>
         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
             <form method="POST" action="/admin/quotes/{{ $id }}">

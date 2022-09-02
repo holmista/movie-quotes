@@ -41,4 +41,10 @@ class AdminQuoteController extends Controller
 		$quote->delete();
 		return redirect()->route('quotes.show');
 	}
+
+	public function edit(Quote $quote)
+	{
+		$movies = Movie::latest()->get();
+		return view('admin.quotes.edit', ['quote'=>$quote, 'movies'=>$movies]);
+	}
 }
