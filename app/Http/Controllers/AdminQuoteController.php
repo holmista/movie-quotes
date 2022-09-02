@@ -30,7 +30,7 @@ class AdminQuoteController extends Controller
 				'ka'=> $request->ka,
 			],
 			'movie_id'    => $request->movie,
-			'thumbnail'   => '$path',
+			'thumbnail'   => $path,
 		]);
 
 		return redirect()->route('quotes.show');
