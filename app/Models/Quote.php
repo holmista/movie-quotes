@@ -12,7 +12,7 @@ class Quote extends Model
 
 	public $translatable = ['body'];
 
-	protected $fillable = ['body', 'movie_id', 'thumbnail'];
+	protected $guarded = ['id'];
 
 	protected $casts = [
 		'body' => 'array',
