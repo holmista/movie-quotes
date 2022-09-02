@@ -18,9 +18,11 @@
             </form>
         </td>
     </tr>
-    <div>
-        <div class="w-[750px] h-[350px] overflow-hidden flex justify-center items-center bg-red-400">
-            <img src="{{ $image }}" class="w-full">
-        </div>
-    </div>
+    <tr>
+        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+            <div class="w-[320px] h-[150px] overflow-hidden flex justify-center items-center">
+                <img src="{{ $image }}" class="w-full">
+            </div>
+        </td>
+    </tr>
 </div>

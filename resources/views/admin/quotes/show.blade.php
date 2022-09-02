@@ -22,7 +22,7 @@
                                 <tr>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                        title
+                                        quote
                                     </th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                         <span class="sr-only">edit</span>
@@ -35,7 +35,7 @@
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($quotes as $quote)
                                     <x-quote-row id="{{ $quote->id }}" image="{{ $quote->thumbnail }}">
-                                        {{ $quote->name }}</x-quote-row>
+                                        {{ $quote->body }}</x-quote-row>
                                 @endforeach
                             </tbody>
                         </table>
