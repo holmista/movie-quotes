@@ -1,4 +1,4 @@
-<x-generic-layout>
+<x-generic-admin-layout>
     <div class="px-4 sm:px-6 lg:px-8 mt-20 w-1/3 mx-auto">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -47,4 +47,4 @@
 
 
 
-</x-generic-layout>
+</x-generic-admin-layout>

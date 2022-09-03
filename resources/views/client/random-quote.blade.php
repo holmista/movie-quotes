@@ -1,6 +1,6 @@
 <x-bg>
     <div class="flex flex-row">
-        <x-switch-language locale='en' />
+        <x-switch-language locale='en' type='client' />
         <div class="flex flex-col items-center w-screen justify-center h-screen">
             <div>
                 <img src="https://georgianjournal.ge/media/_thumb/images/GJ/2013/20/levan-1.jpg">
