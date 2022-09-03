@@ -1,4 +1,4 @@
-<x-generic-layout>
+<x-generic-admin-layout>
     <div class="mt-40 flex justify-center items-center">
         <div class="w-full max-w-xs ">
             <h1 class="text-center text-lg text-gray-700 font-bold">create a quote!</h1>
@@ -51,4 +51,4 @@
             </form>
         </div>
     </div>
-</x-generic-layout>
+</x-generic-admin-layout>
