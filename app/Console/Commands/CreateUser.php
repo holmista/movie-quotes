@@ -39,7 +39,7 @@ class CreateUser extends Command
 		}
 		catch (Exception $e)
 		{
-			$this->error('An error occurred: ' . $e);
+			$this->error('An error occurred: ' . $e->getMessage());
 			return false;
 		}
 	}
