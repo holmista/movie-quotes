@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Http\Requests\StoreMovieRequest;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class AdminMovieController extends Controller
 {
-	public function create()
+	public function create(): View
 	{
 		return view('admin.movies.create');
 	}
 
-	public function store(StoreMovieRequest $request)
+	public function store(StoreMovieRequest $request): RedirectResponse
 	{
 		Movie::create([
 			'title' => [
@@ -20,10 +22,10 @@ class AdminMovieController extends Controller
 				'ka' => $request->ka,
 			],
 		]);
-		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
+		return redirect()->route('movies.index', ['movies'=>Movie::latest()->get()])->with('success', 'movie created');
 	}
 
-	public function show()
+	public function index(): View
 	{
 		$movies = Movie::latest();
 		if (request('search'))
@@ -35,25 +37,36 @@ class AdminMovieController extends Controller
 		return view('admin.movies.show', ['movies'=>$movies->get()]);
 	}
 
-	public function edit(Movie $movie)
+	public function edit(Movie $movie): View
 	{
 		return view('admin.movies.edit', ['movie'=>$movie]);
 	}
 
-	public function update(StoreMovieRequest $request, $id)
+	public function update(StoreMovieRequest $request, $id): RedirectResponse
 	{
 		Movie::where('id', $id)->update(['title' => [
 			'en' => $request->en,
 			'ka' => $request->ka,
 		]]);
 
-		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie updated');
+		return redirect()->route('movies.index', ['movies'=>Movie::latest()->get()])->with('success', 'movie updated');
 	}
 
-	public function destroy(Movie $movie)
+	public function destroy(Movie $movie): RedirectResponse
 	{
 		$movie->delete();
 
-		return redirect()->route('getMovies', ['movies'=>Movie::latest()->get()])->with('success', 'movie deleted');
+		return redirect()->route('movies.index', ['movies'=>Movie::latest()->get()])->with('success', 'movie deleted');
+	}
+
+	public function showQuotes(Movie $movie): RedirectResponse
+	{
+		$quotes = $movie->quotes();
+		if (request('search'))
+		{
+			$quotes->where('body->en', 'like', '%' . request('search') . '%')
+			->orWhere('body->ka', 'like', '%' . request('search') . '%');
+		}
+		return redirect()->route('movie.show_quotes', ['quotes'=>$quotes->get()]);
 	}
 }
