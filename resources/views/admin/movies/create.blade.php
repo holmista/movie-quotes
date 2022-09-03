@@ -8,7 +8,7 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="en">
                         name in english
                     </label>
-                    <input
+                    <input required
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="en" name="en" type="text">
                 </div>
@@ -16,7 +16,7 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="ka">
                         name in georgian
                     </label>
-                    <input
+                    <input required
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="ka" name="ka" type="text">
                 </div>
