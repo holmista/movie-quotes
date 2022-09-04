@@ -1,4 +1,5 @@
 <x-generic-admin-layout>
+    <h1>{{ __('texts.hello_world') }}</h1>
     <div class="px-4 sm:px-6 lg:px-8 mt-20 w-1/3 mx-auto">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
