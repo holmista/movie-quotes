@@ -3,7 +3,7 @@
         {{-- @if (request('category'))
             <input type="hidden" name="category" value="{{ request('category') }}">
         @endif --}}
-        <input type="text" name="search" placeholder="Find something"
+        <input type="text" name="search" placeholder="{{ __('texts.find_something') }}"
             class="bg-transparent placeholder-black font-semibold text-sm outline-0" value="{{ request('search') }}">
     </form>
 </div>
