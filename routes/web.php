@@ -40,4 +40,4 @@ Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->
 
 // client routes
 Route::get('/', [ClientController::class, 'show'])->name('client.show');
-// Route::get('/{movie}', 'client.quotes')->name('client.index');
+Route::get('/{movie}', [ClientController::class, 'index'])->name('client.index');
