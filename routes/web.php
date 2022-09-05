@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminMovieController;
 use App\Http\Controllers\AdminQuoteController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LocaleController;
 
 /*
@@ -39,6 +40,8 @@ Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])
 Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('quotes.update');
 
 // client routes
+Route::get('/', [ClientController::class, 'show'])->name('client.show');
+Route::get('/{movie}', [ClientController::class, 'index'])->name('client.index');
 Route::view('/', 'client.random-quote')->name('client.show');
 Route::view('/{movie}', 'client.quotes')->name('client.index');
 
