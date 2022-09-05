@@ -1,6 +1,6 @@
 <x-bg>
     <div class="flex flex-row">
-        <x-switch-language locale='en' />
+        <x-switch-language locale="{{ Config::get('app.locale') }}" type="client" />
         <x-signin-button />
 
         <div class="flex flex-col items-center w-screen justify-center h-screen">
