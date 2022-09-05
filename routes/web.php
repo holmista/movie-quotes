@@ -29,11 +29,6 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/admin/{movie}/quotes', 'showQuotes')->name('movie.show_quotes');
 	});
 
-	Route::view('/admin/signin', 'admin.sign-in')->name('admin.sign_in');
-	Route::controller(AuthController::class)->group(function () {
-		Route::post('/admin/signin', 'signin')->name('auth.signin');
-	});
-
 	Route::controller(AdminQuoteController::class)->group(function () {
 		Route::get('/admin', 'index')->name('quotes.index');
 		Route::get('/admin/quotes/create', 'create')->name('quotes.create');
@@ -42,6 +37,11 @@ Route::middleware(['auth'])->group(function () {
 		Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.destroy');
 		Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('quotes.update');
 	});
+});
+
+Route::view('/admin/signin', 'admin.sign-in')->name('admin.sign_in');
+Route::controller(AuthController::class)->group(function () {
+	Route::post('/admin/signin', 'signin')->name('auth.signin');
 });
 
 Route::controller(ClientController::class)->group(function () {
