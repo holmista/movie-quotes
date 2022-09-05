@@ -1,5 +1,5 @@
 <x-bg>
-    <x-switch-language locale='en' />
+    <x-switch-language locale='en' type='client' />
     <div class="flex items-center flex-col h-screen w-full">
         <h1 class="text-[48px] text-white mt-[79px] w-[750px]">father of soldior</h1>
         <div class="space-y-16 mt-20">

@@ -11,7 +11,7 @@
             <form method="GET" action="/admin/quotes/{{ $id }}">
                 @csrf
                 <button class="text-blue-600 hover:text-blue-900">
-                    edit
+                    {{ __('texts.edit') }}
                 </button>
             </form>
         </td>
@@ -20,7 +20,7 @@
                 @csrf
                 @method('delete')
                 <button class="text-red-600 hover:text-red-900">
-                    delete
+                    {{ __('texts.delete') }}
                 </button>
             </form>
         </td>

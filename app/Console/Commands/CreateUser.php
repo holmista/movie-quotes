@@ -30,7 +30,7 @@ class CreateUser extends Command
 	public function handle()
 	{
 		$email = $this->argument('email');
-		$password = bcrypt($this->argument('password'));
+		$password = $this->argument('password');
 		try
 		{
 			User::create(['email'=>$email, 'password'=>$password]);

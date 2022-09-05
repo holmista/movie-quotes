@@ -9,6 +9,7 @@ use App\Http\Requests\StoreQuoteRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\App;
 
 class AdminQuoteController extends Controller
 {
@@ -20,6 +21,7 @@ class AdminQuoteController extends Controller
 			$quotes->where('body->en', 'like', '%' . request('search') . '%')
 			->orWhere('body->ka', 'like', '%' . request('search') . '%');
 		}
+		// dd(App::currentLocale());
 		return view('admin.quotes.show', ['quotes'=>$quotes->get()]);
 	}
 

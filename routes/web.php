@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminMovieController;
 use App\Http\Controllers\AdminQuoteController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,6 @@ Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->
 // client routes
 Route::view('/', 'client.random-quote')->name('client.show');
 Route::view('/{movie}', 'client.quotes')->name('client.index');
+
+// locale routes
+Route::get('/language/{locale}', [LocaleController::class, 'change'])->name('locale.change');
