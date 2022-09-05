@@ -32,10 +32,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::controller(AdminQuoteController::class)->group(function () {
 		Route::get('/admin', 'index')->name('quotes.index');
 		Route::get('/admin/quotes/create', 'create')->name('quotes.create');
-		Route::post('/admin/quotes', [AdminQuoteController::class, 'store'])->name('quotes.store');
-		Route::get('/admin/quotes/{quote}', [AdminQuoteController::class, 'edit'])->name('quotes.edit');
-		Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.destroy');
-		Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('quotes.update');
+		Route::post('/admin/quotes', 'store')->name('quotes.store');
+		Route::get('/admin/quotes/{quote}', 'edit')->name('quotes.edit');
+		Route::delete('/admin/quotes/{quote}', 'destroy')->name('quotes.destroy');
+		Route::patch('/admin/quotes/{quote}', 'update')->name('quotes.update');
 	});
 });
 
