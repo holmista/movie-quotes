@@ -62,8 +62,11 @@ class AdminQuoteController extends Controller
 	{
 		Storage::delete($quote->thumbnail);
 		$thumbnail = $request->file('thumbnail')->store('thumbnails');
-		$attributes = request()->only(['body', 'movie_id', 'thumbnail']);
+		// ddd(request()->all());
+		$langAttributes = request()->only(['en', 'ka']);
+		$attributes = request()->only(['movie_id', 'thumbnail']);
 		$attributes['thumbnail'] = $thumbnail;
+		$attributes['body'] = $langAttributes;
 		$quote->update($attributes);
 		return redirect()->route('quotes.index');
 	}
