@@ -21,4 +21,8 @@ return [
 	'quote_movie'      => 'quote movie',
 	'edit_a_movie!'    => 'edit_a_movie!',
 	'edit_a_quote!'    => 'edit a quote!',
+	'sign_in'          => 'sign in',
+	'hi_welcome_back'  => 'Hi, Welcome back',
+	'email_address'    => 'email address',
+	'password'         => 'password',
 ];
