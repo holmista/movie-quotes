@@ -2,6 +2,7 @@
     <div class="flex flex-row">
         <x-switch-language locale='en' />
         <x-signin-button />
+
         <div class="flex flex-col items-center w-screen justify-center h-screen">
             <div>
                 <img src="/storage/{{ $quote->thumbnail }}">

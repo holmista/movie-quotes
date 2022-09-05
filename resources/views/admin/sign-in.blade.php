@@ -1,4 +1,4 @@
-<x-generic-layout>
+<x-generic-admin-layout>
     <!-- component -->
     <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300 mt-40">
         <h1 class="text-4xl font-medium">Sign in</h1>
@@ -32,4 +32,4 @@
         </form>
     </div>
 
-</x-generic-layout>
+</x-generic-admin-layout>

@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAuthRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
-	public function signin(StoreAuthRequest $request)
+	public function signin(StoreAuthRequest $request): RedirectResponse
 	{
 		$credentials = $request->only('email', 'password');
-		if (auth()->attempt($credentials))
+		if (Auth::attempt($credentials))
 		{
-			return redirect()->route('signin.show')->with('success', 'Welcome back!');
+			return redirect()->route('quotes.index')->with('success', 'Welcome back!');
 		}
-		return back()->withInput()->withErrors(['email'=>'invalid credentials']);
+		return redirect()->back()->withInput()->withErrors(['email'=>'invalid credentials']);
 	}
 }
