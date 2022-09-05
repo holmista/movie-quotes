@@ -17,33 +17,39 @@ use App\Http\Controllers\LocaleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('/admin')->group(function () {
+	Route::middleware(['auth'])->group(function () {
+		Route::controller(AdminMovieController::class)->group(function () {
+			Route::get('/movies', 'index')->name('movies.index');
+			Route::get('/movies/create', 'create')->name('movies.create');
+			Route::post('/movies', 'store')->name('movies.store');
+			Route::get('/movies/{movie}', 'edit')->name('movies.edit');
+			Route::patch('/movies/{movie}', 'update')->name('movies.update');
+			Route::delete('/movies/{movie}', 'destroy')->name('movies.destroy');
+			Route::get('/{movie}/quotes', 'showQuotes')->name('movie.show_quotes');
+		});
 
-// admin movies routes
-Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('movies.index');
-Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('movies.create');
-Route::post('/admin/movies', [AdminMovieController::class, 'store'])->name('movies.store');
-Route::get('/admin/movies/{movie}', [AdminMovieController::class, 'edit'])->name('movies.edit');
-Route::patch('/admin/movies/{movie}', [AdminMovieController::class, 'update'])->name('movies.update');
-Route::delete('/admin/movies/{movie}', [AdminMovieController::class, 'destroy'])->name('movies.destroy');
-Route::get('/admin/{movie}/quotes', [AdminMovieController::class, 'showQuotes'])->name('movie.show_quotes');
+		Route::controller(AdminQuoteController::class)->group(function () {
+			Route::get('/', 'index')->name('quotes.index');
+			Route::get('/quotes/create', 'create')->name('quotes.create');
+			Route::post('/quotes', 'store')->name('quotes.store');
+			Route::get('/quotes/{quote}', 'edit')->name('quotes.edit');
+			Route::delete('/quotes/{quote}', 'destroy')->name('quotes.destroy');
+			Route::patch('/quotes/{quote}', 'update')->name('quotes.update');
+		});
+	});
 
-// admin auth routes
-Route::view('/admin/signin', 'admin.sign-in')->name('admin.sign_in');
-Route::post('/admin/signin', [AuthController::class, 'signin'])->name('auth.signin');
+	Route::view('/signin', 'admin.sign-in')->name('admin.sign_in');
+	Route::controller(AuthController::class)->group(function () {
+		Route::post('/signin', 'signin')->name('auth.signin');
+	});
+});
 
-// admin quotes routes
-Route::get('/admin', [AdminQuoteController::class, 'index'])->name('quotes.index');
-Route::get('/admin/quotes/create', [AdminQuoteController::class, 'create'])->name('quotes.create');
-Route::post('/admin/quotes', [AdminQuoteController::class, 'store'])->name('quotes.store');
-Route::get('/admin/quotes/{quote}', [AdminQuoteController::class, 'edit'])->name('quotes.edit');
-Route::delete('/admin/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('quotes.destroy');
-Route::patch('/admin/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('quotes.update');
+Route::controller(ClientController::class)->group(function () {
+	Route::get('/', 'show')->name('client.show');
+	Route::get('/{movie}', 'index')->name('client.index');
+});
 
-// client routes
-Route::get('/', [ClientController::class, 'show'])->name('client.show');
-Route::get('/{movie}', [ClientController::class, 'index'])->name('client.index');
-Route::view('/', 'client.random-quote')->name('client.show');
-Route::view('/{movie}', 'client.quotes')->name('client.index');
-
-// locale routes
-Route::get('/language/{locale}', [LocaleController::class, 'change'])->name('locale.change');
+Route::controller(LocaleController::class)->group(function () {
+	Route::get('/language/{locale}', 'change')->name('locale.change');
+});
