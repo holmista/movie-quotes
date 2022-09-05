@@ -1,5 +1,5 @@
 <x-bg>
-    <x-switch-language locale="{{ Config::get('app.locale') }}" type="client" />
+    <x-switch-language locale="{{ app()->getLocale() }}" type="client" />
     <x-signin-button />
 
     <div class="flex items-center flex-col h-screen w-full">
