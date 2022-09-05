@@ -17,31 +17,32 @@ use App\Http\Controllers\LocaleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('/admin')->group(function () {
+	Route::middleware(['auth'])->group(function () {
+		Route::controller(AdminMovieController::class)->group(function () {
+			Route::get('/movies', 'index')->name('movies.index');
+			Route::get('/movies/create', 'create')->name('movies.create');
+			Route::post('/movies', 'store')->name('movies.store');
+			Route::get('/movies/{movie}', 'edit')->name('movies.edit');
+			Route::patch('/movies/{movie}', 'update')->name('movies.update');
+			Route::delete('/movies/{movie}', 'destroy')->name('movies.destroy');
+			Route::get('/{movie}/quotes', 'showQuotes')->name('movie.show_quotes');
+		});
 
-Route::middleware(['auth'])->group(function () {
-	Route::controller(AdminMovieController::class)->group(function () {
-		Route::get('/admin/movies', 'index')->name('movies.index');
-		Route::get('/admin/movies/create', 'create')->name('movies.create');
-		Route::post('/admin/movies', 'store')->name('movies.store');
-		Route::get('/admin/movies/{movie}', 'edit')->name('movies.edit');
-		Route::patch('/admin/movies/{movie}', 'update')->name('movies.update');
-		Route::delete('/admin/movies/{movie}', 'destroy')->name('movies.destroy');
-		Route::get('/admin/{movie}/quotes', 'showQuotes')->name('movie.show_quotes');
+		Route::controller(AdminQuoteController::class)->group(function () {
+			Route::get('/', 'index')->name('quotes.index');
+			Route::get('/quotes/create', 'create')->name('quotes.create');
+			Route::post('/quotes', 'store')->name('quotes.store');
+			Route::get('/quotes/{quote}', 'edit')->name('quotes.edit');
+			Route::delete('/quotes/{quote}', 'destroy')->name('quotes.destroy');
+			Route::patch('/quotes/{quote}', 'update')->name('quotes.update');
+		});
 	});
 
-	Route::controller(AdminQuoteController::class)->group(function () {
-		Route::get('/admin', 'index')->name('quotes.index');
-		Route::get('/admin/quotes/create', 'create')->name('quotes.create');
-		Route::post('/admin/quotes', 'store')->name('quotes.store');
-		Route::get('/admin/quotes/{quote}', 'edit')->name('quotes.edit');
-		Route::delete('/admin/quotes/{quote}', 'destroy')->name('quotes.destroy');
-		Route::patch('/admin/quotes/{quote}', 'update')->name('quotes.update');
+	Route::view('/signin', 'admin.sign-in')->name('admin.sign_in');
+	Route::controller(AuthController::class)->group(function () {
+		Route::post('/signin', 'signin')->name('auth.signin');
 	});
-});
-
-Route::view('/admin/signin', 'admin.sign-in')->name('admin.sign_in');
-Route::controller(AuthController::class)->group(function () {
-	Route::post('/admin/signin', 'signin')->name('auth.signin');
 });
 
 Route::controller(ClientController::class)->group(function () {
