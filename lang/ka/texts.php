@@ -21,4 +21,8 @@ return [
 	'quote_movie'      => 'ციტატის ფილმი',
 	'edit_a_movie!'    => 'შეცვალე ფილმი!',
 	'edit_a_quote!'    => 'შეცვალე ციტატა!',
+	'sign_in'          => 'შესვლა',
+	'hi_welcome_back'  => 'გამარჯობა, ველქამ!',
+	'email_address'    => 'იმეილის მისამართი',
+	'password'         => 'პაროლი',
 ];

@@ -9,7 +9,11 @@
             </div>
             <div class="text-white text-[48px] flex flex-col justify-center items-center">
                 <p class="mt-[65px]">{!! $quote->body !!}</p>
-                <p class="mt-[114px] underline">{!! $quote->movie->title !!}</p>
+                <p class="mt-[114px] underline">
+                    <a href="/{{ $quote->movie->id }}">
+                        {!! $quote->movie->title !!}
+                    </a>
+                </p>
             </div>
         </div>
     </div>
